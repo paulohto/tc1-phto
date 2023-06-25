@@ -1,5 +1,9 @@
 # :page_facing_up: Relatório Técnico
 
+#### Por: Paulo Henrique Teixeira de Oliveira - rm349922
+Relatório de tecnologias e dificuldades encontradas na conclusão dos primeiros requisitos referentes ao primeiro TechChallenge da Pós: Arquitetura e Desenvolvimento em Java / FIAP.
+#
+
 ### Tecnologias e Ferramentas Utilizadas
 * Java
 * SpringBoot
