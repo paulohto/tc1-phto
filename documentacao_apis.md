@@ -2,8 +2,6 @@
 
 # :page_facing_up: Documentação APIs
 
-#### Por: Paulo Henrique Teixeira de Oliveira - rm349922
-
 Nesse material poderá ser encontrado o conjunto de APIs desenvolvidas para cadastro de Eletrodomésticos, Pessoas e Endereços.
 Esses são os primeiros requisitos referentes ao primeiro TechChallenge da Pós: Arquitetura e Desenvolvimento em Java / FIAP.
 #
