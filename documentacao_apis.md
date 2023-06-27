@@ -12,7 +12,7 @@ Esses são os primeiros requisitos referentes ao primeiro TechChallenge da Pós:
 Endpoint: http://localhost:8080/eletrodomesticos
 <br>Essa API cadastra eletrodomésticos. A entrada deve conter um JSON com os dados obrigatórios:
 
-~~~
+~~~json
 { 
   "nome":"", 
   "modelo":"", 
@@ -24,12 +24,14 @@ Não sendo aceito: valores vázios ou a não declaração de alguma das chaves a
 
 ### :green_circle: Sucesso:
 Caso todos os requisitos sejam aceitos o retorno será:
+~~~~
 "Eletrodoméstico cadastrado com sucesso!"
+~~~~
 
 ###  :red_circle: Erro:
 Caso algum valor não seja declarado ou alguma chave, o retorno será uma indicação de erro, como no exemplo baixo:
 #### Post:
-~~~
+~~~json
 {
 "nome":"",
 "modelo":"283c",
@@ -38,7 +40,7 @@ Caso algum valor não seja declarado ou alguma chave, o retorno será uma indica
 }
 ~~~
 #### Retorno:
-~~~
+~~~json
 {
 "nome": "Nome não pode estar em branco e não pode ser nulo."
 }
@@ -49,7 +51,7 @@ Caso algum valor não seja declarado ou alguma chave, o retorno será uma indica
 ## :raising_hand: API: Cadastra Pessoa
 Endpoint: http://localhost:8080/pessoas
 <br>Essa API cadastra pessoas. A entrada deve conter um JSON com os dados obrigatórios:
-~~~
+~~~json
 { 
     "nome":"",
     "datanascimento": "",
@@ -61,12 +63,14 @@ Não sendo aceito: valores vázios ou a não declaração de alguma das chaves a
 
 ### :green_circle: Sucesso:
 Caso todos os requisitos sejam aceitos o retorno será:
-"Pessoa cadastrada com sucesso!!"
+~~~~
+"Pessoa cadastrada com sucesso!"
+~~~~
 
 ### :red_circle: Erro:
 Caso algum valor não seja declarado ou alguma chave, o retorno será uma indicação de erro, como no exemplo baixo:
 #### Post:
-~~~
+~~~json
 {
     "nome":"Paulo",
     "datanascimento": "",
@@ -75,7 +79,7 @@ Caso algum valor não seja declarado ou alguma chave, o retorno será uma indica
 }
 ~~~
 #### Retorno:
-~~~
+~~~json
 {
     "datanascimento": "Data de Nascimento não pode estar em branco e não pode ser nulo."
 }
@@ -86,7 +90,7 @@ Caso algum valor não seja declarado ou alguma chave, o retorno será uma indica
 ## :house: API: Cadastra Endereço
 Endpoint: http://localhost:8080/enderecos
 <br>Essa API cadastra endereços. A entrada deve conter um JSON com os dados obrigatórios:
-~~~
+~~~json
 { 
     "bairro": "",
     "cidade": "",
@@ -99,12 +103,14 @@ Não sendo aceito: valores vázios ou a não declaração de alguma das chaves a
 
 ### :green_circle: Sucesso:
 Caso todos os requisitos sejam aceitos o retorno será:
+~~~~
 "Endereço cadastrado com sucesso!"
+~~~~
 
 ### :red_circle: Erro:
 Caso algum valor não seja declarado ou alguma chave, o retorno será uma indicação de erro, como no exemplo baixo:
 #### Post:
-~~~
+~~~json
 {
     "bairro": "Jardins",
     "cidade": "SP",
@@ -114,7 +120,7 @@ Caso algum valor não seja declarado ou alguma chave, o retorno será uma indica
 }
 ~~~
 #### Retorno:
-~~~
+~~~json
 {
     "rua": "Rua não pode estar em branco e não pode ser nulo."
 }
