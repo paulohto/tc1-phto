@@ -6,9 +6,9 @@ spring:
       pageable:
         one-indexed-parameters: true
   datasource:
-    url: jdbc:postgresql://localhost:5432/db_tc1
-    username: admin
-    password: admin
+    url: ${SPRING_DATA_SOURCE_URL}
+    username: ${SPRING_DATA_SOURCE_USERNAME}
+    password: ${SPRING_DATA_SOURCE_PASSWORD}
   jpa:
     show-sql: true
     database-platform: 'org.hibernate.dialect.PostgreSQLDialect'
@@ -20,5 +20,5 @@ spring:
     hibernate:
       ddl-auto: none
 server:
-  port: 8080
+  port: ${SERVER_PORT}
 
