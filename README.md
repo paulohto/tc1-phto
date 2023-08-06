@@ -13,13 +13,13 @@ API desenvolvida para cadastro de Eletrodomésticos, Pessoas e Endereços.
 ```
 docker network create redelocal --driver=bridge  
 
-docker run --name tc1_phto_postgres -e POSTGRES_PASSWORD=admin -e POSTGRES_USER=admin -e POSTGRES_DB=db_tc1 --network redelocal -p 5432:5432 -d postgres
+docker run --name tc1_phto_mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -e MYSQL_PASSWORD=admin -e MYSQL_USER=admin -e MYSQL_DATABASE=db_tc1 --network redelocal -p 3306:3306 -d mysql
 ```
 
 2° - Insira essas variáveis de ambiente na aplicação, basta copiar e colar:
 
 ```
-SPRING_DATA_SOURCE_URL=jdbc:postgresql://localhost:5432/db_tc1
+SPRING_DATA_SOURCE_URL=jdbc:mysql://localhost:3306/db_tc1
 SPRING_DATA_SOURCE_USERNAME=admin
 SPRING_DATA_SOURCE_PASSWORD=admin
 SERVER_PORT=8080
