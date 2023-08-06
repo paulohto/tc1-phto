@@ -23,8 +23,6 @@ SPRING_DATA_SOURCE_URL=jdbc:postgresql://localhost:5432/db_tc1
 SPRING_DATA_SOURCE_USERNAME=admin
 SPRING_DATA_SOURCE_PASSWORD=admin
 SERVER_PORT=8080
-LOGGING_LEVEL_ROOT=DEBUG
-LOGGING_BR_COM_BEN=DEBUG
 ```
 
 > **_NOTA:_**  Ao startar a aplicação, para acessar a api basta acessar a seguinte url a depender da porta escolhida
