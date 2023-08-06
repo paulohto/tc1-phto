@@ -1,21 +1,19 @@
 spring:
   application:
     name: tc1-api-phto
-  main:
-    banner-mode: 'ON'
   data:
     web:
       pageable:
         one-indexed-parameters: true
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${SPRING_DATA_SOURCE_URL}:jdbc:postgresql://localhost:5432/db_tc1
-    username: ${SPRING_DATA_SOURCE_USERNAME}:admin
-    password: ${SPRING_DATA_SOURCE_PASSWORD}:admin
+    url: ${SPRING_DATA_SOURCE_URL}
+    username: ${SPRING_DATA_SOURCE_USERNAME}
+    password: ${SPRING_DATA_SOURCE_PASSWORD}
     jpa:
       generate-ddl: false
       properties:
         hibernate:
           dialect: org.hibernate.dialect.H2Dialect
 server:
-  port: ${SERVER_PORT}:8080
+  port: ${SERVER_PORT}

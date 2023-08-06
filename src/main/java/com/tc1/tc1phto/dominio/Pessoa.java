@@ -1,10 +1,22 @@
 package com.tc1.tc1phto.dominio;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Data
+@Entity
+@NoArgsConstructor
 public class Pessoa {
+    @Getter
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
     @JsonProperty
     private String nome;
     @JsonProperty
