@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @NoArgsConstructor
+@Table(name="tb_eletrodomestico")
 public class Eletrodomestico {
 
     @Id
@@ -18,12 +19,19 @@ public class Eletrodomestico {
     private Long id;
 
     @JsonProperty
+    @Column(name="nome")
     private String nome;
+
     @JsonProperty
+    @Column(name="modelo")
     private String modelo;
+
     @JsonProperty
+    @Column(name="potencia")
     private String potencia;
+
     @JsonProperty
+    @Column(name="selo")
     private String selo;
 
     public Eletrodomestico(String nome, String modelo, String potencia, String selo){

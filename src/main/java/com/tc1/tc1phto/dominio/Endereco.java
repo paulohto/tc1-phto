@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @NoArgsConstructor
+@Table(name="tb_endereco")
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,14 +20,23 @@ public class Endereco {
     private Long id;
 
     @JsonProperty
+    @Column(name="rua")
     private String rua;
+
     @JsonProperty
+    @Column(name="numero")
     private String numero;
+
     @JsonProperty
+    @Column(name="bairro")
     private String bairro;
+
     @JsonProperty
+    @Column(name="cidade")
     private String cidade;
+
     @JsonProperty
+    @Column(name="estado")
     private String estado;
     public Endereco(String rua, String numero, String bairro, String cidade,String estado){
         this.rua = rua;

@@ -19,6 +19,11 @@ spring:
             non_contextual_creation: true
     hibernate:
       ddl-auto: none
+  flyway:
+    enabled: true
+    fail-on-missing-locations: true
+    locations: classpath:migration
+    baselineOnMigrate: true
 server:
   port: ${SERVER_PORT}
 
