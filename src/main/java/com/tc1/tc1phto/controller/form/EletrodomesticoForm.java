@@ -2,6 +2,7 @@ package com.tc1.tc1phto.controller.form;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.tc1.tc1phto.dominio.Eletrodomestico;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NonNull;
@@ -12,7 +13,9 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class EletrodomesticoForm {
+
     @JsonProperty
     @NotBlank(message = "Nome não pode estar em branco e não pode ser nulo.")
     private String nome;

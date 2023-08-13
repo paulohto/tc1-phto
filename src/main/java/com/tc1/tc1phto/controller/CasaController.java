@@ -21,6 +21,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/casa")
 public class CasaController {
 
     @Autowired
@@ -69,6 +70,4 @@ public class CasaController {
         }
         return null;
     }
-
-
 }

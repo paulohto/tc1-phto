@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-interface RepositorioEnderecos extends JpaRepository<Endereco, Long> {
+public interface RepositorioEnderecos extends JpaRepository<Endereco, Long> {
 }

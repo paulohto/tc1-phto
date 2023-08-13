@@ -19,6 +19,8 @@ spring:
             non_contextual_creation: true
     hibernate:
       ddl-auto: none
+#    open-in-view: false
+#    defer-datasource-initialization: true
   flyway:
     enabled: true
     fail-on-missing-locations: true

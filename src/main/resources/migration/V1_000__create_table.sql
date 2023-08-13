@@ -18,7 +18,7 @@ CREATE TABLE tb_endereco (
 CREATE TABLE tb_eletrodomestico (
 	id              INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	nome            VARCHAR(50) NOT NULL,
-	modelo          VARCHAR(50) NOT NULL,
+	modelo          VARCHAR(25) NOT NULL,
 	potencia        VARCHAR(35) NOT NULL,
 	selo            CHAR(01) NOT NULL
 );

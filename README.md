@@ -22,7 +22,7 @@ docker run --name tc1_phto_mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -e MYSQL_PA
 SPRING_DATA_SOURCE_URL=jdbc:mysql://localhost:3306/db_tc1
 SPRING_DATA_SOURCE_USERNAME=admin
 SPRING_DATA_SOURCE_PASSWORD=admin
-SERVER_PORT=8080
+SERVER_PORT=8081
 ```
 
 > **_NOTA:_**  Ao startar a aplicação, para acessar a api basta acessar a seguinte url a depender da porta escolhida
