@@ -7,7 +7,6 @@ import com.tc1.tc1phto.dominio.Eletrodomestico;
 import com.tc1.tc1phto.dominio.Endereco;
 import com.tc1.tc1phto.dominio.Pessoa;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +21,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/casa")
 public class CasaController {
 
     @Autowired
@@ -70,6 +70,4 @@ public class CasaController {
         }
         return null;
     }
-
-
 }
