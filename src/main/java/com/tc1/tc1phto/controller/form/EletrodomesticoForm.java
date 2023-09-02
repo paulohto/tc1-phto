@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 public class EletrodomesticoForm {
+
+    private Long id;
     @JsonProperty
     @NotBlank(message = "Nome não pode estar em branco e não pode ser nulo.")
     private String nome;
@@ -26,8 +28,23 @@ public class EletrodomesticoForm {
     @NotBlank(message = "Selo não pode estar em branco e não pode ser nulo.")
     private String selo;
 
-    public Eletrodomestico toEletro(){
-        return new Eletrodomestico(nome, modelo, potencia, selo);
+    public EletrodomesticoForm(){}
+
+    public EletrodomesticoForm(Long id, String nome, String modelo, String potencia, String selo){
+        this.id = id;
+        this.nome = nome;
+        this.modelo = modelo;
+        this.potencia = potencia;
+        this.selo = selo;
     }
+
+    public EletrodomesticoForm(Eletrodomestico entidade){
+        this.id = entidade.getId();
+        this.nome = entidade.getNome();
+        this.modelo = entidade.getModelo();
+        this.potencia = entidade.getPotencia();
+        this.selo = entidade.getSelo();
+    }
+
 
 }
