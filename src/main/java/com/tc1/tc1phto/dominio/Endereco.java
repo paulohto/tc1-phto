@@ -4,23 +4,50 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
+@Getter @Setter
+@Entity
+@Table(name="tb_endereco")
 public class Endereco {
-    @JsonProperty
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String rua;
-    @JsonProperty
+
     private String numero;
-    @JsonProperty
+
     private String bairro;
-    @JsonProperty
+
     private String cidade;
-    @JsonProperty
+
     private String estado;
 
-    public Endereco(String rua, String numero, String bairro, String cidade,String estado){
+    public Endereco(){}
+    public Endereco(Long id, String rua, String numero, String bairro, String cidade,String estado){
+        this.id = id;
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
+    }
+
+    @Override
+    public int hashCode(){
+        return getId().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Endereco{" +
+                "id=" + id +
+                ", rua='" + rua + '\'' +
+                ", numero=" + numero + '\'' +
+                ", bairro=" + bairro + '\'' +
+                ", cidade=" + cidade + '\'' +
+                ", estado=" + estado +
+                '}';
     }
 }

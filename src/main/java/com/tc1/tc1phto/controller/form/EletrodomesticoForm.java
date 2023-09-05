@@ -5,6 +5,9 @@ import com.tc1.tc1phto.dominio.Eletrodomestico;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NonNull;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.validation.Validator;
 import javax.validation.constraints.NotBlank;
 import javax.validation.Validation;
 import javax.validation.constraints.NotEmpty;
@@ -15,16 +18,19 @@ import javax.validation.constraints.NotNull;
 public class EletrodomesticoForm {
 
     private Long id;
-    @JsonProperty
+    @Autowired
+    public Validator validator;
+
     @NotBlank(message = "Nome não pode estar em branco e não pode ser nulo.")
-    private String nome;
     @JsonProperty
+    private String nome;
+
     @NotBlank(message = "Modelo não pode estar em branco e não pode ser nulo.")
     private String modelo;
-    @JsonProperty
+
     @NotBlank(message = "Potencia não pode estar em branco e não pode ser nulo.")
     private String potencia;
-    @JsonProperty
+
     @NotBlank(message = "Selo não pode estar em branco e não pode ser nulo.")
     private String selo;
 
@@ -45,6 +51,5 @@ public class EletrodomesticoForm {
         this.potencia = entidade.getPotencia();
         this.selo = entidade.getSelo();
     }
-
 
 }

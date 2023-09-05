@@ -1,11 +1,16 @@
 package com.tc1.tc1phto.dominio;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.tc1.tc1phto.controller.form.EletrodomesticoForm;
 import lombok.Getter;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.*;
+import lombok.Setter;
 
+import javax.persistence.*;
+import java.util.Objects;
+
+@Getter @Setter
 @Entity
 @Table(name="tb_eletrodomestico")
 public class Eletrodomestico {
@@ -32,44 +37,20 @@ public class Eletrodomestico {
         this.selo = selo;
     }
 
-    public Long getId() {
-        return id;
+    public Eletrodomestico(EletrodomesticoForm form) {
+        this.id = form.getId();
+        this.nome = form.getNome();
+        this.modelo = form.getModelo();
+        this.potencia = form.getPotencia();
+        this.selo = form.getSelo();
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public String getPotencia() {
-        return potencia;
-    }
-
-    public void setPotencia(String potencia) {
-        this.potencia = potencia;
-    }
-
-    public String getSelo() {
-        return selo;
-    }
-
-    public void setSelo(String selo) {
-        this.selo = selo;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Eletrodomestico produto = (Eletrodomestico) o;
+        return Objects.equals(id, produto.id);
     }
 
     @Override

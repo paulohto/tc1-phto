@@ -33,8 +33,6 @@ public class EletrodomesticoService {
 
     @Transactional(readOnly = true)
     public EletrodomesticoForm findById(Long id){
-        //Optional<Eletrodomestico> entidade = repoEletro.findById(id);
-        //Eletrodomestico eletrodomestico = entidade.orElseThrow(() -> new ControllerNotFoundException("Eletrodoméstico não encontrado"));
         var eletrodomestico = repoEletro.findById(id).orElseThrow(() -> new ControllerNotFoundException("Eletrodoméstico não encontrado"));
         return new EletrodomesticoForm(eletrodomestico);
     }
@@ -51,7 +49,7 @@ public class EletrodomesticoService {
     @Transactional
     public EletrodomesticoForm update(Long id, EletrodomesticoForm eletrodomestico) {
         try {
-            Eletrodomestico entidade = repoEletro.getOne(id);
+            Eletrodomestico entidade = repoEletro.getReferenceById(id);
             mapperFormParaDominio(eletrodomestico, entidade);
             return new EletrodomesticoForm(entidade);
         } catch (EntityNotFoundException e) {
@@ -70,22 +68,17 @@ public class EletrodomesticoService {
     }
 
     private void mapperFormParaDominio(EletrodomesticoForm form, Eletrodomestico dominio) {
-        dominio.setId(dominio.getId());
-        dominio.setNome(dominio.getNome());
-        dominio.setModelo(dominio.getModelo());
-        dominio.setSelo(dominio.getSelo());
-        dominio.setPotencia(dominio.getPotencia());
-
-//        dominio.setNome(dto.getNome());
-//        dominio.setPreco(dto.getPreco());
-//        dominio.setUrlImagem(dto.getUrlImagem());
-//        dominio.setDescricao(dto.getDescricao());
-//        dominio.getCategorias().clear();
+        dominio.setId(form.getId());
+        dominio.setNome(form.getNome());
+        dominio.setModelo(form.getModelo());
+        dominio.setSelo(form.getSelo());
+        dominio.setPotencia(form.getPotencia());
 
 //        for (EletrodomesticoForm eletrodomesticoForm: form.) {
 //            Categoria categoria = categoriaRepo.getOne(categoriaDTO.getId());
 //            entity.getCategorias().add(categoria);
 //        }
     }
+
 
 }
