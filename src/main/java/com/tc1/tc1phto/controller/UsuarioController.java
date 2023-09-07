@@ -1,6 +1,7 @@
 package com.tc1.tc1phto.controller;
 
 import com.tc1.tc1phto.controller.form.UsuarioForm;
+import com.tc1.tc1phto.controller.form.UsuarioPessoaForm;
 import com.tc1.tc1phto.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,7 +21,7 @@ public class UsuarioController {
     public UsuarioService usuarioService;
 
     @GetMapping("/usuarios")
-    public ResponseEntity<Page<UsuarioForm>> findAll(
+    public ResponseEntity<Page<UsuarioPessoaForm>> findAll(
             @RequestParam(value = "pagina", defaultValue = "0") Integer pagina,
             @RequestParam(value = "tamanho", defaultValue = "10") Integer tamanho
             ){
@@ -30,7 +31,7 @@ public class UsuarioController {
     }
 
     @GetMapping("usuarios/{id}")
-    public ResponseEntity<UsuarioForm> findById(@PathVariable Long id){
+    public ResponseEntity<UsuarioPessoaForm> findById(@PathVariable Long id){
         var usuario = usuarioService.findById(id);
         return ResponseEntity.ok(usuario);
     }

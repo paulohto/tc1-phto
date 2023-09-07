@@ -44,4 +44,27 @@ public class PessoaForm {
         this.parentesco = entidade.getParentesco();
     }
 
+    /////////////////////////
+
+    public static Pessoa toEntity(PessoaForm form) {
+        return new Pessoa(form);
+    }
+
+    public static PessoaForm fromEntity(Pessoa pessoa) {
+        return new PessoaForm(
+                pessoa.getId(),
+                pessoa.getNome(),
+                pessoa.getData_nascimento(),
+                pessoa.getSexo(),
+                pessoa.getParentesco()
+        );
+    }
+
+    public static Pessoa mapperDtoToEntity( PessoaForm form, Pessoa entidade) {
+        entidade.setNome(form.getNome());
+        entidade.setData_nascimento(form.getData_nascimento());
+        entidade.setSexo(form.getSexo());
+        entidade.setParentesco(form.getParentesco());
+        return entidade;
+    }
 }

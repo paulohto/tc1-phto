@@ -17,10 +17,14 @@ public class Usuario {
     private String username;
     private String password;
 
+    // CRIANDO RELACIONAMENTO: UM PARA UM
+    @OneToOne(mappedBy = "usuario")
+    private Pessoa pessoa;
+
     public Usuario(){}
 
-    public Usuario(String username, String password){
-        this.username = username;
+    public Usuario( String username, String password){
+         this.username = username;
         this.password = password;
     }
 
@@ -33,7 +37,7 @@ public class Usuario {
     public String toString() {
         return "Usuario{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", username=" + username + '\'' +
                 ", password=" + password +
                 '}';
     }

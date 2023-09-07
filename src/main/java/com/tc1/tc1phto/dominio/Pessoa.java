@@ -1,6 +1,8 @@
 package com.tc1.tc1phto.dominio;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.tc1.tc1phto.controller.form.PessoaForm;
+import com.tc1.tc1phto.controller.form.PessoaUsuarioForm;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
@@ -22,6 +24,10 @@ public class Pessoa {
 
     private String parentesco;
 
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
     public Pessoa() {}
 
     public Pessoa (Long id, String nome, String data_nascimento, String sexo, String parentesco){
@@ -30,6 +36,21 @@ public class Pessoa {
         this.data_nascimento = data_nascimento;
         this.sexo = sexo;
         this.parentesco = parentesco;
+    }
+
+    public Pessoa(PessoaForm form){
+        this.id = form.getId();
+        this.nome = form.getNome();
+        this.data_nascimento = form.getData_nascimento();
+        this.sexo = form.getSexo();
+        this.parentesco = form.getParentesco();
+    }
+
+    public Pessoa(PessoaUsuarioForm form, Usuario usuario) {
+        this.id = form.getId();
+        this.nome = form.getNome();
+        this.data_nascimento = form.getData_nascimento();
+        this.usuario = usuario;
     }
 
     @Override
@@ -44,7 +65,8 @@ public class Pessoa {
                 ", nome='" + nome + '\'' +
                 ", data_nascimento=" + data_nascimento + '\'' +
                 ", sexo=" + sexo + '\'' +
-                ", parentesco=" + parentesco +
+                ", parentesco=" + parentesco + '\'' +
+                ", usuario=" + usuario +
                 '}';
     }
 }

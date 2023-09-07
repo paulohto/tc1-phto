@@ -2,11 +2,13 @@ package com.tc1.tc1phto.service;
 
 import com.tc1.tc1phto.controller.form.EletrodomesticoForm;
 import com.tc1.tc1phto.controller.form.PessoaForm;
+import com.tc1.tc1phto.controller.form.PessoaUsuarioForm;
 import com.tc1.tc1phto.dominio.Eletrodomestico;
 import com.tc1.tc1phto.dominio.Pessoa;
 import com.tc1.tc1phto.exception.service.ControllerNotFoundException;
 import com.tc1.tc1phto.exception.service.DatabaseException;
 import com.tc1.tc1phto.repositorio.IRepositorioPessoas;
+import com.tc1.tc1phto.repositorio.IRepositorioUsuario;
 import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -23,33 +25,48 @@ public class PessoaService {
 
     @Autowired
     private IRepositorioPessoas repoPessoa;
+    @Autowired
+    private IRepositorioUsuario repoUsuario;
 
     @Transactional(readOnly = true)
-    public Page<PessoaForm> findAll(PageRequest page){
+    public Page<PessoaUsuarioForm> findAll(PageRequest page){
         Page<Pessoa> pessoas = repoPessoa.findAll(page);
-        return pessoas.map(e -> new PessoaForm(e));
+        return pessoas.map(PessoaUsuarioForm::fromEntity);
     }
 
     @Transactional(readOnly = true)
-    public PessoaForm findById(Long id){
+    public PessoaUsuarioForm findById(Long id){
         var pessoa = repoPessoa.findById(id).orElseThrow(() -> new ControllerNotFoundException("Pessoa não encontrado"));
-        return new PessoaForm(pessoa);
+        return PessoaUsuarioForm.fromEntity(pessoa);
     }
 
     @Transactional
-    public PessoaForm save(PessoaForm pessoa){
-        Pessoa entidade = new Pessoa();
-        mapperFormParaDominio(pessoa, entidade);
-        var pessoaSalvo = repoPessoa.save(entidade);
-        return new PessoaForm(pessoaSalvo);
+    public PessoaUsuarioForm save(PessoaUsuarioForm pessoa){
+        try {
+
+            var usuario = repoUsuario.getReferenceById(pessoa.getId());
+            var entidade = PessoaUsuarioForm.toEntity(pessoa, usuario);
+            //Pessoa entidade = new Pessoa();
+            //mapperFormParaDominio(pessoa, entidade);
+            var pessoaSalvo = repoPessoa.save(entidade);
+            return PessoaUsuarioForm.fromEntity(pessoaSalvo);
+
+        } catch (DataIntegrityViolationException e) {
+            throw  new DatabaseException("Usuário não encontrado");
+        }
+
     }
 
     @Transactional
-    public PessoaForm update(Long id, PessoaForm pessoa){
+    public PessoaUsuarioForm update(Long id, PessoaUsuarioForm pessoa){
         try{
-            Pessoa entidade = repoPessoa.getOne(id);
-            mapperFormParaDominio(pessoa, entidade);
-            return new PessoaForm(entidade);
+            var usuario = repoUsuario.getReferenceById(pessoa.getId());
+            Pessoa entidade = repoPessoa.getReferenceById(id);
+            PessoaUsuarioForm.mapperFormToEntity(pessoa, entidade, usuario);
+            //mapperFormParaDominio(pessoa, entidade);
+            entidade = repoPessoa.save(entidade);
+            return PessoaUsuarioForm.fromEntity(entidade);
+
         }catch (EntityNotFoundException e){
             throw new ControllerNotFoundException("Pessoa não encontrada, id:" + id);
         }
@@ -65,6 +82,7 @@ public class PessoaService {
         }
     }
 
+    //SERÁ QUE ISSO ESTÁ SENDO USADO?
     public void mapperFormParaDominio(PessoaForm form, Pessoa entidade){
         entidade.setId(form.getId());
         entidade.setNome(form.getNome());

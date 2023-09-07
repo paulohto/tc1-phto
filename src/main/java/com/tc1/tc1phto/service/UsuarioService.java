@@ -2,6 +2,7 @@ package com.tc1.tc1phto.service;
 
 import com.tc1.tc1phto.controller.form.PessoaForm;
 import com.tc1.tc1phto.controller.form.UsuarioForm;
+import com.tc1.tc1phto.controller.form.UsuarioPessoaForm;
 import com.tc1.tc1phto.dominio.Pessoa;
 import com.tc1.tc1phto.dominio.Usuario;
 import com.tc1.tc1phto.exception.service.ControllerNotFoundException;
@@ -25,30 +26,32 @@ public class UsuarioService {
     private IRepositorioUsuario repoUsuario;
 
     @Transactional(readOnly = true)
-    public Page<UsuarioForm> findAll(PageRequest page){
+    public Page<UsuarioPessoaForm> findAll(PageRequest page){
         Page<Usuario> usuarios = repoUsuario.findAll(page);
-        return usuarios.map(e -> new UsuarioForm(e));
+        return usuarios.map(UsuarioPessoaForm::fromEntity);
     }
 
     @Transactional(readOnly = true)
-        public UsuarioForm findById(Long id){
+        public UsuarioPessoaForm findById(Long id){
         var usuario = repoUsuario.findById(id).orElseThrow(() -> new ControllerNotFoundException("Usuário não encontrado"));
-        return new UsuarioForm(usuario);
+        return UsuarioPessoaForm.fromEntity(usuario);
     }
 
     @Transactional
     public UsuarioForm save(UsuarioForm usuario) {
-        Usuario entidade = new Usuario();
+        //Usuario entidade = UsuarioForm.to new Usuario();
+        var entidade = UsuarioForm.paraDominio(usuario);
         mapperFormParaDominio(usuario, entidade);
         var usuarioSalvo = repoUsuario.save(entidade);
-        return new UsuarioForm(usuarioSalvo);
+        //return new UsuarioForm(usuarioSalvo);
+        return UsuarioForm.deDominio(usuarioSalvo);
     }
 
     @Transactional
-    public UsuarioForm update(Long id, UsuarioForm dto) {
+    public UsuarioForm update(Long id, UsuarioForm form) {
         try {
             Usuario entidade = repoUsuario.getReferenceById(id);
-            UsuarioForm.mapperFormParaDominio(dto, entidade);
+            UsuarioForm.mapperFormParaDominio(form, entidade);
             entidade = repoUsuario.save(entidade);
             return UsuarioForm.deDominio(entidade);
 

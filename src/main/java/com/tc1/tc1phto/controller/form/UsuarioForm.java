@@ -15,7 +15,6 @@ public class UsuarioForm {
 
     @NotBlank(message = "Username não pode estar em branco e não pode ser nulo.")
     private String username;
-
     @NotBlank(message = "Password não pode estar em branco e não pode ser nulo.")
     @Size(min = 6, message = "A senha deve ter pelo menos {min} caracteres")
     private String password;
