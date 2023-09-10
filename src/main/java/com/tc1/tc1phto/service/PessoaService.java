@@ -44,7 +44,7 @@ public class PessoaService {
     public PessoaUsuarioForm save(PessoaUsuarioForm pessoa){
         try {
 
-            var usuario = repoUsuario.getReferenceById(pessoa.getId());
+            var usuario = repoUsuario.getReferenceById(pessoa.getUsuario().getId());
             var entidade = PessoaUsuarioForm.toEntity(pessoa, usuario);
             //Pessoa entidade = new Pessoa();
             //mapperFormParaDominio(pessoa, entidade);

@@ -50,6 +50,8 @@ public class Pessoa {
         this.id = form.getId();
         this.nome = form.getNome();
         this.data_nascimento = form.getData_nascimento();
+        this.sexo = form.getSexo();
+        this.parentesco = form.getParentesco();
         this.usuario = usuario;
     }
 
